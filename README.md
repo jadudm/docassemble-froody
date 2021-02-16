@@ -1,1 +1,1 @@
-# docassemble-froody
+A sample wifi session interview built in [docassemble](https://docassemble.org). 

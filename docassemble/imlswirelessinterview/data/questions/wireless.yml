@@ -1,0 +1,94 @@
+---
+metadata:
+  title: |
+    IMLS: Library wifi session data
+  description: |
+    Exploring possibilities for gathering library wifi session data
+---
+field: intro_screen
+question: Welcome!
+subquestion: |
+  Greetings. We are gathering data on behalf of IMLS. Specifically we are asking for wifi session counts during the last calendar year.
+
+  To get started, press **Continue**.
+mandatory: True
+---
+question: Thank you!
+subquestion: |
+  You recorded ${ wifi_sessions } wifi sessions for ${ state }. That averages out to ${ average_per_day } wifi sessions per day.
+buttons:
+  - Exit: exit
+    url: https://federalist-126760f7-e6ff-4146-9b00-e8966a80d7f0.app.cloud.gov/site/cantsin/10x-shared-components-phase-3/
+mandatory: True
+---
+question: |
+  Which state are you submitting data on behalf of?
+field: state
+dropdown:
+  code: states
+---
+code: |
+  average_per_day = round(wifi_sessions / 365)
+---
+question: How many wifi sessions did you see in the last calendar year?
+fields:
+  - Number: wifi_sessions
+    datatype: number
+---
+variable name: states
+data:
+  - Alabama
+  - Alaska
+  - Arizona
+  - Arkansas
+  - California
+  - Colorado
+  - Connecticut
+  - Delaware
+  - Florida
+  - Georgia
+  - Hawaii
+  - Idaho
+  - Illinois
+  - Indiana
+  - Iowa
+  - Kansas
+  - Kentucky
+  - Louisiana
+  - Maine
+  - Maryland
+  - Massachusetts
+  - Michigan
+  - Minnesota
+  - Mississippi
+  - Missouri
+  - Montana
+  - Nebraska
+  - Nevada
+  - New Hampshire
+  - New Jersey
+  - New Mexico
+  - New York
+  - North Carolina
+  - North Dakota
+  - Ohio
+  - Oklahoma
+  - Oregon
+  - Pennsylvania
+  - Rhode Island
+  - South Carolina
+  - South Dakota
+  - Tennessee
+  - Texas
+  - Utah
+  - Vermont
+  - Virginia
+  - Washington
+  - West Virginia
+  - Wisconsin
+  - Wyoming
+  - American Samoa
+  - Guam
+  - Northern Mariana Islands
+  - Puerto Rico
+  - U.S. Virgin Islands
