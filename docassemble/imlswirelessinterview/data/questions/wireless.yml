@@ -5,6 +5,7 @@ metadata:
   description: |
     Exploring possibilities for gathering library wifi session data
 ---
+event: intro
 field: intro_screen
 question: Welcome!
 subquestion: |
@@ -13,6 +14,7 @@ subquestion: |
   To get started, press **Continue**.
 mandatory: True
 ---
+event: final
 question: Thank you!
 subquestion: |
   You recorded ${ wifi_sessions } wifi sessions for ${ state }. That averages out to ${ average_per_day } wifi sessions per day.
@@ -27,8 +29,10 @@ field: state
 dropdown:
   code: states
 ---
+multi_user: True
 code: |
   average_per_day = round(wifi_sessions / 365)
+  store_variables_snapshot(persistent=True)
 ---
 question: How many wifi sessions did you see in the last calendar year?
 fields:
