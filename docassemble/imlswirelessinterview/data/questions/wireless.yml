@@ -9,7 +9,13 @@ event: intro
 field: intro_screen
 question: Welcome!
 subquestion: |
-  Greetings. We are gathering data on behalf of IMLS. Specifically we are asking for wifi session counts during the last calendar year.
+  Greetings.
+
+  This demo showcases one possible avenue to gather data on behalf of IMLS.
+
+  Everything you will see during this demo is free and open source software -- even this very interview is [published openly on Github](https://github.com/jadudm/docassemble-froody).
+
+  During this interview, we will ask for wifi session counts during the last calendar year. Don't worry, this will be quick and short.
 
   To get started, press **Continue**.
 mandatory: True
@@ -17,14 +23,24 @@ mandatory: True
 event: final
 question: Thank you!
 subquestion: |
-  You recorded ${ wifi_sessions } wifi sessions for ${ state }. That averages out to ${ average_per_day } wifi sessions per day.
+  You recorded ${ wifi_sessions } wifi sessions for ${ state }.
+
+  We also did some background calculations during the interview.
+
+  Your data averages out to ${ average_per_day } wifi sessions per day for ${ state }.
+
+  This calculation is an arbitrary metric, to be sure, but nonetheless showcases the flexibility of [docassemble](https://docassemble.org) (the software used for this interview). We are focusing on wifi session counts but we could just as easily expand this interview to encompass the entire PLS repertoire of questions if needed.
+
+  An interview is not the only way to get this data, of course. Using the same software, we could, for instance, ingest uploaded CSVs, pull data in from other APIs, export to Google Sheets, and what-have-you. Where we go from here depends on further research, interviews, and discussion.
+
+  And with that, this demo is nearing its end. Exiting this interview will take you to the IMLS web site.
 buttons:
   - Exit: exit
-    url: https://federalist-126760f7-e6ff-4146-9b00-e8966a80d7f0.app.cloud.gov/site/cantsin/10x-shared-components-phase-3/
+    url: https://www.imls.gov/
 mandatory: True
 ---
 question: |
-  Which state are you submitting data on behalf of?
+  Which US state or territory are you submitting data on behalf of?
 field: state
 dropdown:
   code: states
@@ -32,9 +48,10 @@ dropdown:
 multi_user: True
 code: |
   average_per_day = round(wifi_sessions / 365)
-  store_variables_snapshot(persistent=True)
+  store_variables_snapshot(persistent=True, data=dict(state=state, average_per_day=average_per_day, wifi_sessions=wifi_sessions))
 ---
-question: How many wifi sessions did you see in the last calendar year?
+question: |
+  How many wifi sessions did you see in the last calendar year (2020)? A guesstimate is fine.
 fields:
   - Number: wifi_sessions
     datatype: number
